@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dashboard-card {
+    @apply bg-white shadow-lg rounded-lg p-6 text-xl font-semibold flex items-center justify-center;
+}
