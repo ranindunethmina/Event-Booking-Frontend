@@ -8,8 +8,8 @@ export function RootLayout() {
   const routeTitles: any = {
     "/": "Home",
     "/events": "Event Management",
-    "/tickets": "Ticket Management",
-    "/bookings": "Bookings Management"
+    // "/tickets": "Ticket Management",
+    "/bookings": "Booking Management"
   }
 
   const title = routeTitles[location?.pathname] || "System"

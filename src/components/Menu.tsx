@@ -1,5 +1,10 @@
 import { useState } from "react"
-import { Menu as MenuIcon, Home, Users, Package, ShoppingCart } from "react-feather"
+import {
+  Menu as MenuIcon,
+  Home,
+  Users,
+  ShoppingCart
+} from "react-feather"
 import { Link } from "react-router"
 
 export function Menu() {
@@ -48,15 +53,15 @@ export function Menu() {
               {isSidebarOpen && <span>Events</span>}
             </Link>
           </li>
-          <li>
-            <Link
-              to="tickets"
-              className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-blue-700 hover:text-gray-200"
-            >
-              <Package className="w-6 h-6" />
-              {isSidebarOpen && <span>Tickets</span>}
-            </Link>
-          </li>
+          {/*<li>*/}
+          {/*  <Link*/}
+          {/*    to="tickets"*/}
+          {/*    className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-blue-700 hover:text-gray-200"*/}
+          {/*  >*/}
+          {/*    <Package className="w-6 h-6" />*/}
+          {/*    {isSidebarOpen && <span>Tickets</span>}*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
           <li>
             <Link
               to="bookings"

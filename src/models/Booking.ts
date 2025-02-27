@@ -1,15 +1,15 @@
 export class Booking {
-    BookingID: string;
-    EventID: string;
-    UserID: string;
-    TicketCount: number;
-    TotalPrice: number;
+    BookingId: number;
+    CustomerId: number;
+    EventId: number;
+    Status: string;
+    TotalAmount: number;
 
-    constructor(bookingID: string, eventID: string, userID: string, ticketCount: number, totalPrice: number) {
-        this.BookingID = bookingID;
-        this.EventID = eventID;
-        this.UserID = userID;
-        this.TicketCount = ticketCount;
-        this.TotalPrice = totalPrice;
+    constructor(bookingID: number, CustomerId: number, eventID: number, status: string, totalAmount: number) {
+        this.BookingId = bookingID;
+        this.CustomerId = CustomerId;
+        this.EventId = eventID;
+        this.Status = status;
+        this.TotalAmount = totalAmount;
     }
 }

@@ -1,22 +1,27 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import {RootLayout} from "./components/RootLayout.tsx";
-import Dashboard from "./pages/Dashboard.tsx";
-import Tickets from "./pages/Tickets.tsx";
-import Events from "./pages/Event.tsx";
+import Dashboard from "./pages/Customer/DashboardC.tsx";
+import Events from "./pages/Admin/Event.tsx";
+import Booking from "./pages/Admin/Booking.tsx";
 
 function App() {
-    // const isAuthenticated = useSelector((state) => state.userReducer.isAuthenticated);
-
     const routes = createBrowserRouter([
+        {
+            path: '/signUp',
+            element: <SignUp/>,
+        },
+        {
+            path: '/signIn',
+            element:<SignIn/>
+        },
         {
             path: "",
             element: <RootLayout />,
             children: [
                 { path: "", element: <Dashboard /> },
                 { path: "/events", element: <Events /> },
-                { path: "/tickets", element: <Tickets /> },
-                // { path: "/booking", element: <Booking /> }
+                { path: "/bookings", element: <Booking /> }
             ]
         }
     ])

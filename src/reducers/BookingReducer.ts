@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Booking } from "../models/Booking.ts";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { Booking } from "../models/Booking.ts";
 
 const initialState: Booking[] = [];
 
@@ -24,7 +24,7 @@ export const updateBooking = createAsyncThunk(
     'booking/updateBooking',
     async (booking: Booking) => {
         try {
-            const response = await api.put(`/update/${booking.bookingID}`, booking);
+            const response = await api.put(`/update/${booking.BookingId}`, booking);
             return response.data;
         } catch (error) {
             console.log(error);
@@ -58,7 +58,7 @@ export const getAllBookings = createAsyncThunk(
 
 const bookingSlice = createSlice({
     name: 'booking',
-    initialState,
+    initialState: initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -66,15 +66,17 @@ const bookingSlice = createSlice({
                 state.push(action.payload);
             })
             .addCase(updateBooking.fulfilled, (state, action) => {
-                const index = state.findIndex((booking) => booking.bookingID === action.payload.bookingID);
-                state[index] = action.payload;
+                return state.map((booking) =>
+                    booking.BookingId === action.payload.id ? action.payload : booking
+                );
             })
             .addCase(deleteBooking.fulfilled, (state, action) => {
-                return state.filter((booking) => booking.bookingID !== action.payload);
+                return state.filter((booking) => booking.BookingId !== action.payload.id);
             })
+
             .addCase(getAllBookings.fulfilled, (_state, action) => {
                 return action.payload;
-            })
+            });
     }
 });
 

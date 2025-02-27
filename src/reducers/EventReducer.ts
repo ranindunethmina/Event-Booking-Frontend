@@ -1,6 +1,6 @@
-import axios from "axios";
-import { Event } from "../models/Event.ts";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios"
+import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {Event} from "../models/Event.ts";
 
 const initialState: Event[] = [];
 
@@ -24,7 +24,7 @@ export const updateEvent = createAsyncThunk(
     'event/updateEvent',
     async (event: Event) => {
         try {
-            const response = await api.put(`/update/${event.eventID}`, event);
+            const response = await api.put(`/update/${event.EventId}`, event);
             return response.data;
         } catch (error) {
             console.log(error);
@@ -58,7 +58,7 @@ export const getAllEvents = createAsyncThunk(
 
 const eventSlice = createSlice({
     name: 'event',
-    initialState,
+    initialState: initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -66,15 +66,17 @@ const eventSlice = createSlice({
                 state.push(action.payload);
             })
             .addCase(updateEvent.fulfilled, (state, action) => {
-                const index = state.findIndex((event) => event.eventID === action.payload.eventID);
-                state[index] = action.payload;
+                return state.map((event)=>
+                    event.EventId === action.payload.id ? action.payload : event
+                );
             })
             .addCase(deleteEvent.fulfilled, (state, action) => {
-                return state.filter((event) => event.eventID !== action.payload);
+                return state.filter((event) => event.EventId !== action.payload.id);
             })
+
             .addCase(getAllEvents.fulfilled, (_state, action) => {
                 return action.payload;
-            })
+            });
     }
 });
 

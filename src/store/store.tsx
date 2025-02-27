@@ -1,13 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit";
 import eventReducer from "../reducers/EventReducer.ts";
-import ticketsReducer from "../reducers/TicketsReducer.ts";
-import bookingsReducer from "../reducers/BookingsReducer.ts";
+import bookingReducer from "../reducers/BookingReducer.ts";
 
 export const store = configureStore({
     reducer: {
         event: eventReducer,
-        tickets: ticketsReducer,
-        bookings: bookingsReducer
+        booking: bookingReducer
     }
 })
 
